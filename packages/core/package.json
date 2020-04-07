@@ -1,0 +1,48 @@
+{
+	"name": "@betomorrow/logging-core",
+	"version": "1.0.0",
+	"description": "Logging tools",
+	"main": "lib/commonjs/index.js",
+	"module": "lib/module/index.js",
+	"react-native": "src/index.ts",
+	"types": "lib/typescript/src/index.d.ts",
+	"files": [
+		"src",
+		"lib"
+	],
+	"scripts": {
+		"prepare": "bob build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BeTomorrow/react-logging.git"
+	},
+	"keywords": [
+		"react",
+		"log",
+		"logging"
+	],
+	"author": "BeTomorrow",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/BeTomorrow/react-logging/issues"
+	},
+	"homepage": "https://github.com/BeTomorrow/react-logging#readme",
+	"devDependencies": {
+		"@react-native-community/bob": "^0.10.0",
+		"prettier": "^2.0.2",
+		"typescript": "^3.8.3"
+	},
+	"dependencies": {
+		"moment": "^2.24.0"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "lib",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	}
+}

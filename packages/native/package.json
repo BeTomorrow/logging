@@ -1,0 +1,42 @@
+{
+	"name": "@betomorrow/logging-native",
+	"version": "1.0.0",
+	"description": "Native plugin of @betomorrow/logging-core",
+	"main": "lib/commonjs/index.js",
+	"module": "lib/module/index.js",
+	"react-native": "src/index.ts",
+	"types": "lib/typescript/src/index.d.ts",
+	"files": [
+		"src",
+		"lib"
+	],
+	"scripts": {
+		"prepare": "bob build"
+	},
+	"author": "BeTomorrow",
+	"license": "MIT",
+	"peerDependencies": {
+		"react-native": "^0.50.0"
+	},
+	"dependencies": {
+		"@betomorrow/logging-core": "1.0.0",
+		"async-mutex": "^0.1.4",
+		"react-native-fs": "^2.16.6"
+	},
+	"devDependencies": {
+		"@betomorrow/logging-core": "./packages/core/lib/typescript/src",
+		"@react-native-community/bob": "^0.10.0",
+		"@types/react-native": "^0.62.1",
+		"prettier": "^2.0.2",
+		"typescript": "^3.8.3"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "lib",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	}
+}

@@ -1,0 +1,14 @@
+.DS_Store
+.cache
+.vscode
+.idea
+.expo
+.gradle
+.project
+.settings
+.history
+
+
+node_modules/
+lib/
+dist/
