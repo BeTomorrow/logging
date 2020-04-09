@@ -23,7 +23,7 @@
 		"logging"
 	],
 	"author": "BeTomorrow",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/BeTomorrow/react-logging/issues"
 	},

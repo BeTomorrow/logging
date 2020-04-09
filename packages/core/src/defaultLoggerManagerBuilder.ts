@@ -6,7 +6,7 @@ import { LoggerManagerBuilder } from "./loggerManagerBuilder";
 import { MemoryStorage } from "./services/memoryStorage";
 
 export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
-	private appenders: LogAppender[] = [];
+	private _appenders: LogAppender[] = [];
 	private _level: LogLevel = LogLevel.DEBUG;
 	private _formatter: LogFormatter = new DefaultFormatter();
 
@@ -16,6 +16,10 @@ export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
 
 	get level() {
 		return this._level;
+	}
+
+	get appenders() {
+		return this._appenders;
 	}
 
 	withLevel(level: LogLevel): DefaultLoggerManagerBuilder {
@@ -29,21 +33,21 @@ export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
 	}
 
 	withConsoleAppender(formatter?: LogFormatter): DefaultLoggerManagerBuilder {
-		this.appenders.push(new ConsoleAppender(formatter ?? this.formatter));
+		this._appenders.push(new ConsoleAppender(formatter ?? this.formatter));
 		return this;
 	}
 
 	withMemoryAppender(memoryStorage: MemoryStorage, formatter?: LogFormatter): DefaultLoggerManagerBuilder {
-		this.appenders.push(new MemoryAppender(formatter ?? this.formatter, memoryStorage));
+		this._appenders.push(new MemoryAppender(formatter ?? this.formatter, memoryStorage));
 		return this;
 	}
 
 	withAppender(appender: LogAppender): DefaultLoggerManagerBuilder {
-		this.appenders.push(appender);
+		this._appenders.push(appender);
 		return this;
 	}
 
 	build(): LoggerManager {
-		return new DefaultLogger(this.level, this.appenders);
+		return new DefaultLogger(this.level, this._appenders);
 	}
 }

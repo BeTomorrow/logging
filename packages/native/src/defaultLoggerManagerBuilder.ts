@@ -9,8 +9,13 @@ import {
 } from "@betomorrow/logging-core";
 import { FileAppender } from "./appenders/fileAppender";
 import { RollingFileAppender } from "./appenders/rollingFileAppender";
+import { DefaultLogger } from "./defaultLogger";
 
-export class DefaultLoggerManagerBuilder implements CoreLoggerManagerBuilder {
+interface NativeLoggerManagerBuilder extends CoreLoggerManagerBuilder {
+	withRollingFileAppender(maxFileCount: number, logDir: string, formatter?: LogFormatter);
+}
+
+export class DefaultLoggerManagerBuilder implements NativeLoggerManagerBuilder {
 	private baseBuilder = new CoreDefaultLoggerManagerBuilder();
 
 	get level() {
@@ -21,32 +26,42 @@ export class DefaultLoggerManagerBuilder implements CoreLoggerManagerBuilder {
 		return this.baseBuilder.formatter;
 	}
 
+	get appenders() {
+		return this.baseBuilder.appenders;
+	}
+
 	withLevel(level: LogLevel) {
-		return this.baseBuilder.withLevel(level);
+		this.baseBuilder.withLevel(level);
+		return this;
 	}
 
 	withFormatter(formatter: LogFormatter) {
-		return this.baseBuilder.withFormatter(formatter);
+		this.baseBuilder.withFormatter(formatter);
+		return this;
 	}
 
 	withConsoleAppender(formatter?: LogFormatter) {
-		return this.baseBuilder.withConsoleAppender(formatter);
+		this.baseBuilder.withConsoleAppender(formatter);
+		return this;
 	}
 
 	withRollingFileAppender(maxFileCount = 5, logDir: string = FileAppender.DefaultLogDir, formatter?: LogFormatter) {
 		const appender = new RollingFileAppender(formatter ?? this.formatter, maxFileCount, logDir);
-		return this.baseBuilder.withAppender(appender);
+		this.baseBuilder.withAppender(appender);
+		return this;
 	}
 
 	withMemoryAppender(memoryStorage: MemoryStorage, formatter?: LogFormatter) {
-		return this.baseBuilder.withMemoryAppender(memoryStorage, formatter);
+		this.baseBuilder.withMemoryAppender(memoryStorage, formatter);
+		return this;
 	}
 
 	withAppender(appender: LogAppender) {
-		return this.baseBuilder.withAppender(appender);
+		this.baseBuilder.withAppender(appender);
+		return this;
 	}
 
 	build(): LoggerManager {
-		return this.baseBuilder.build();
+		return new DefaultLogger(this.baseBuilder.level, this.baseBuilder.appenders);
 	}
 }
