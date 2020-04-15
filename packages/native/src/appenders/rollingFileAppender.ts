@@ -1,7 +1,7 @@
+import { AbstractAppender, LogAppender, LogEvent, LogFormatter } from "@betomorrow/logging-core";
 import { Mutex } from "async-mutex";
 import * as RNFS from "react-native-fs";
 import { FileAppender } from "./fileAppender";
-import { AbstractAppender, LogAppender, LogFormatter, LogEvent } from "@betomorrow/logging-core";
 
 export class RollingFileAppender extends AbstractAppender implements LogAppender {
 	private maxFileCount: number;

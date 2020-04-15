@@ -7,8 +7,8 @@ import {
 	LogLevel,
 	MemoryStorage,
 } from "@betomorrow/logging-core";
-import { FileAppender } from "./appenders/fileAppender";
-import { RollingFileAppender } from "./appenders/rollingFileAppender";
+import { FileAppender } from "../appenders/fileAppender";
+import { RollingFileAppender } from "../appenders/rollingFileAppender";
 import { DefaultLogger } from "./defaultLogger";
 
 interface NativeLoggerManagerBuilder extends CoreLoggerManagerBuilder {

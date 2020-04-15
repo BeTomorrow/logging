@@ -1,6 +1,6 @@
+import { AbstractAppender, LogAppender, LogEvent, LogFormatter } from "@betomorrow/logging-core";
 import * as RNFS from "react-native-fs";
-import { DEFAULT_LOG_DIR } from "..";
-import { AbstractAppender, LogAppender, LogFormatter, LogEvent } from "@betomorrow/logging-core";
+import { DEFAULT_LOG_DIR } from "./constants";
 
 export class FileAppender extends AbstractAppender implements LogAppender {
 	static get DefaultLogDir() {

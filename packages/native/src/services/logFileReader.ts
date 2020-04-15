@@ -1,5 +1,5 @@
 import * as RNFS from "react-native-fs";
-import { DEFAULT_LOG_DIR } from "..";
+import { DEFAULT_LOG_DIR } from "../appenders";
 
 export interface LogFileContent {
 	path: string;

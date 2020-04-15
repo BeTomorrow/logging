@@ -1,9 +1,8 @@
-import { LogAppender, LogFormatter, LoggerManager, LogLevel } from ".";
-import { ConsoleAppender, MemoryAppender } from "./appenders";
+import { ConsoleAppender, MemoryAppender } from "../appenders";
+import { DefaultFormatter } from "../formatters";
+import { MemoryStorage } from "../services/memoryStorage";
+import { LogAppender, LogFormatter, LoggerManager, LoggerManagerBuilder, LogLevel } from "../types";
 import { DefaultLogger } from "./defaultLogger";
-import { DefaultFormatter } from "./formatters";
-import { LoggerManagerBuilder } from "./loggerManagerBuilder";
-import { MemoryStorage } from "./services/memoryStorage";
 
 export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
 	private _appenders: LogAppender[] = [];

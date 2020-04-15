@@ -1,4 +1,4 @@
-import { Logger, LoggerManager, LogAppender, LogLevel } from ".";
+import { LoggerManager, Logger, LogAppender, LogLevel } from "../types";
 
 export class DefaultLogger implements Logger, LoggerManager {
 	private appenders: LogAppender[] = [];
