@@ -1,4 +1,5 @@
 import {
+	DefaultLoggerManager,
 	DefaultLoggerManagerBuilder as CoreDefaultLoggerManagerBuilder,
 	LogAppender,
 	LogFormatter,
@@ -62,6 +63,7 @@ export class DefaultLoggerManagerBuilder implements NativeLoggerManagerBuilder {
 	}
 
 	build(): LoggerManager {
-		return new DefaultLogger(this.baseBuilder.level, this.baseBuilder.appenders);
+		const provider = (manager: LoggerManager) => new DefaultLogger(manager);
+		return new DefaultLoggerManager(this.level, this.appenders, provider);
 	}
 }

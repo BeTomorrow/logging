@@ -2,6 +2,7 @@ import { ConsoleAppender, MemoryAppender } from "../appenders";
 import { DefaultFormatter } from "../formatters";
 import { MemoryStorage } from "../services/memoryStorage";
 import { LogAppender, LogFormatter, LoggerManager, LoggerManagerBuilder, LogLevel } from "../types";
+import { DefaultLoggerManager } from "./defaultLoggerManager";
 import { DefaultLogger } from "./defaultLogger";
 
 export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
@@ -47,6 +48,7 @@ export class DefaultLoggerManagerBuilder implements LoggerManagerBuilder {
 	}
 
 	build(): LoggerManager {
-		return new DefaultLogger(this.level, this._appenders);
+		const provider = (manager: LoggerManager) => new DefaultLogger(manager);
+		return new DefaultLoggerManager(this.level, this._appenders, provider);
 	}
 }

@@ -17,10 +17,11 @@ export interface Logger {
 }
 
 export interface LoggerManager {
+	getLevel(): LogLevel;
 	setLevel(level: LogLevel): void;
 	addAppender(appender: LogAppender): void;
 	getAppenders(): ReadonlyArray<LogAppender>;
-	getLogger(): Logger;
+	getLogger(sender?: any): Logger;
 	init(): Promise<void>;
 }
 

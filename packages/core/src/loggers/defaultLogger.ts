@@ -1,34 +1,10 @@
-import { LoggerManager, Logger, LogAppender, LogLevel } from "../types";
+import { LoggerManager, Logger, LogLevel } from "../types";
 
-export class DefaultLogger implements Logger, LoggerManager {
-	private appenders: LogAppender[] = [];
-	private currentLevel: LogLevel = LogLevel.INFO;
+export class DefaultLogger implements Logger {
+	private manager: LoggerManager;
 
-	constructor(initialLevel: LogLevel, appenders: LogAppender[]) {
-		this.currentLevel = initialLevel;
-		this.appenders = appenders;
-	}
-
-	async init(): Promise<void> {
-		for (const appender of this.appenders) {
-			await appender.init();
-		}
-	}
-
-	addAppender(appender: LogAppender) {
-		this.appenders.push(appender);
-	}
-
-	getAppenders(): ReadonlyArray<LogAppender> {
-		return this.appenders;
-	}
-
-	getLogger(): Logger {
-		return this;
-	}
-
-	setLevel(level: LogLevel) {
-		this.currentLevel = level;
+	constructor(manager: LoggerManager) {
+		this.manager = manager;
 	}
 
 	trace(sender: any, ...args: any[]): void {
@@ -52,18 +28,18 @@ export class DefaultLogger implements Logger, LoggerManager {
 	}
 
 	isDebugEnabled(): boolean {
-		return this.currentLevel <= LogLevel.DEBUG;
+		return this.manager.getLevel() <= LogLevel.DEBUG;
 	}
 
 	isTraceEnabled(): boolean {
-		return this.currentLevel === LogLevel.TRACE;
+		return this.manager.getLevel() === LogLevel.TRACE;
 	}
 
 	private log(sender: any, level: LogLevel, args: any[]) {
-		if (level < this.currentLevel) {
+		if (level < this.manager.getLevel()) {
 			return;
 		}
-		this.appenders.forEach((appender) => {
+		this.manager.getAppenders().forEach((appender) => {
 			try {
 				appender.append({
 					date: new Date(),
