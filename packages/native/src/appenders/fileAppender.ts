@@ -3,8 +3,9 @@ import { DEFAULT_LOG_DIR } from "..";
 import { AbstractAppender, LogAppender, LogFormatter, LogEvent } from "@betomorrow/logging-core";
 
 export class FileAppender extends AbstractAppender implements LogAppender {
-	static readonly DefaultLogDir: string = DEFAULT_LOG_DIR;
-
+	static get DefaultLogDir() {
+		return DEFAULT_LOG_DIR;
+	}
 	private filePath: string;
 	private logDir: string;
 
