@@ -7,11 +7,11 @@ export enum LogLevel {
 }
 
 export interface Logger {
-	trace(sender: any, ...args: any[]): void;
-	debug(sender: any, ...args: any[]): void;
-	info(sender: any, ...args: any): void;
-	warn(sender: any, ...args: any[]): void;
-	error(sender: any, ...args: any[]): void;
+	trace(...args: any[]): void;
+	debug(...args: any[]): void;
+	info(...args: any): void;
+	warn(...args: any[]): void;
+	error(...args: any[]): void;
 	isDebugEnabled(): boolean;
 	isTraceEnabled(): boolean;
 }

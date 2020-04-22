@@ -10,23 +10,23 @@ export class WithSender implements Logger {
 	}
 
 	trace(...args: any[]): void {
-		this.logger.trace(this.sender, args);
+		this.logger.trace(this.sender, ...args);
 	}
 
 	debug(...args: any[]): void {
-		this.logger.debug(this.sender, args);
+		this.logger.debug(this.sender, ...args);
 	}
 
 	info(...args: any[]): void {
-		this.logger.info(this.sender, args);
+		this.logger.info(this.sender, ...args);
 	}
 
 	warn(...args: any[]): void {
-		this.logger.warn(this.sender, args);
+		this.logger.warn(this.sender, ...args);
 	}
 
 	error(...args: any[]): void {
-		this.logger.error(this.sender, args);
+		this.logger.error(this.sender, ...args);
 	}
 
 	isDebugEnabled(): boolean {

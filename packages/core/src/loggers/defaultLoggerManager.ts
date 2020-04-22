@@ -26,7 +26,7 @@ export class DefaultLoggerManager implements LoggerManager {
 		return this.appenders;
 	}
 
-	getLogger(sender?: any): Logger {
+	getLogger(sender?: any) {
 		const logger = this.loggerProvider(this);
 		return !!sender ? new WithSender(logger, sender) : logger;
 	}
@@ -40,7 +40,7 @@ export class DefaultLoggerManager implements LoggerManager {
 	}
 
 	isDebugEnabled(): boolean {
-		return this.currentLevel <= LogLevel.DEBUG;
+		return this.currentLevel >= LogLevel.DEBUG;
 	}
 
 	isTraceEnabled(): boolean {

@@ -2,9 +2,11 @@ import { LogFormatter, LogEvent, LogLevel } from "../types";
 
 export class DefaultFormatter implements LogFormatter {
 	logToString(event: LogEvent): string {
-		return `${event.date.toISOString()} [${LogLevel[event.level]}] ${this.nameOf(event.sender)}: ${this.toMessage(
-			event.args
-		)}`;
+		if (event.args.length > 0) {
+			return `${event.date.toISOString()} [${LogLevel[event.level]}] ${event.sender}: ${this.toMessage(event.args)}`;
+		} else {
+			return `${event.date.toISOString()} [${LogLevel[event.level]}] ${event.sender}`;
+		}
 	}
 
 	private toMessage(args: any[]): string {
@@ -14,21 +16,5 @@ export class DefaultFormatter implements LogFormatter {
 			}
 			return prev ? `${prev}, ${v}` : v;
 		});
-	}
-
-	private nameOf(sender: any): string {
-		if (typeof sender === "string") {
-			return sender;
-		}
-		if (typeof sender === "object") {
-			return sender.constructor.name;
-		}
-		if (typeof sender === "function") {
-			return `fun ${sender.name}()`;
-		}
-		if (sender.name !== undefined) {
-			return sender.name;
-		}
-		return "(undefined)";
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@betomorrow/logging-core",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Logging tools",
 	"main": "lib/commonjs/index.js",
 	"module": "lib/module/index.js",

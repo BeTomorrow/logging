@@ -8,24 +8,24 @@ export class DefaultLogger implements Logger {
 		this.manager = manager;
 	}
 
-	trace(sender: any, ...args: any[]): void {
-		this.log(sender, LogLevel.TRACE, args);
+	trace(...args: any[]): void {
+		this.log(LogLevel.TRACE, args);
 	}
 
-	debug(sender: any, ...args: any[]): void {
-		this.log(sender, LogLevel.DEBUG, args);
+	debug(...args: any[]): void {
+		this.log(LogLevel.DEBUG, args);
 	}
 
-	info(sender: any, ...args: any[]): void {
-		this.log(sender, LogLevel.INFO, args);
+	info(...args: any[]): void {
+		this.log(LogLevel.INFO, args);
 	}
 
-	warn(sender: any, ...args: any[]): void {
-		this.log(sender, LogLevel.WARN, args);
+	warn(...args: any[]): void {
+		this.log(LogLevel.WARN, args);
 	}
 
-	error(sender: any, ...args: any[]): void {
-		this.log(sender, LogLevel.ERROR, args);
+	error(...args: any[]): void {
+		this.log(LogLevel.ERROR, args);
 	}
 
 	isDebugEnabled(): boolean {
@@ -36,10 +36,11 @@ export class DefaultLogger implements Logger {
 		return this.manager.getLevel() === LogLevel.TRACE;
 	}
 
-	private log(sender: any, level: LogLevel, args: any[]) {
+	private log(level: LogLevel, args: any[]) {
 		if (level < this.manager.getLevel()) {
 			return;
 		}
+		const sender = args.shift();
 		InteractionManager.runAfterInteractions(() => {
 			this.manager.getAppenders().forEach((appender) => {
 				try {
@@ -47,7 +48,7 @@ export class DefaultLogger implements Logger {
 						date: new Date(),
 						sender: sender,
 						level: level,
-						args,
+						args: args,
 					});
 				} catch (err) {
 					console.warn(`DefaultLogger - cannot append log`, err);
