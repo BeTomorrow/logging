@@ -29,7 +29,7 @@ export class DefaultLogger implements Logger {
 	}
 
 	isDebugEnabled(): boolean {
-		return this.manager.getLevel() <= LogLevel.DEBUG;
+		return this.manager.getLevel() >= LogLevel.DEBUG;
 	}
 
 	isTraceEnabled(): boolean {

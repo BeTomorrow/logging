@@ -1,6 +1,6 @@
 {
 	"name": "@betomorrow/logging-native",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "React Native plugin of @betomorrow/logging-core",
 	"main": "lib/commonjs/index.js",
 	"module": "lib/module/index.js",
@@ -19,7 +19,7 @@
 		"react-native": "*"
 	},
 	"dependencies": {
-		"@betomorrow/logging-core": "1.0.2",
+		"@betomorrow/logging-core": "1.0.3",
 		"async-mutex": "^0.1.4",
 		"react-native-fs": "^2.16.6"
 	},
