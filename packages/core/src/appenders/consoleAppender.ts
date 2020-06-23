@@ -9,9 +9,9 @@ export class ConsoleAppender extends AbstractAppender {
 	append(event: LogEvent): void {
 		const msg = this.formatter.logToString(event);
 		if (event.level >= LogLevel.WARN) {
-			console.warn(msg);
+			console.warn(msg, ...event.args);
 		} else {
-			console.log(msg);
+			console.log(msg, ...event.args);
 		}
 	}
 }
