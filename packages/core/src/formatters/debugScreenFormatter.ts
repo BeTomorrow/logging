@@ -1,12 +1,12 @@
-import moment from "moment";
+import dayjs from "dayjs";
 import { LogEvent, LogFormatter } from "../types";
 
 export class DebugScreenFormatter implements LogFormatter {
 	logToString(event: LogEvent): string {
 		if (event.args.length > 0) {
-			return `[${moment(event.date).format("HH:mm:ss")}] ${event.sender}: ${this.toMessage(event.args)}`;
+			return `[${dayjs(event.date).format("HH:mm:ss")}] ${event.sender}: ${this.toMessage(event.args)}`;
 		} else {
-			return `[${moment(event.date).format("HH:mm:ss")}] ${event.sender}`;
+			return `[${dayjs(event.date).format("HH:mm:ss")}] ${event.sender}`;
 		}
 	}
 
