@@ -1,6 +1,6 @@
 {
 	"name": "@betomorrow/logging-core",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Logging tools",
 	"main": "lib/commonjs/index.js",
 	"module": "lib/module/index.js",
@@ -34,7 +34,7 @@
 		"typescript": "^3.8.3"
 	},
 	"dependencies": {
-		"moment": "^2.24.0"
+		"dayjs": "^1.11.3"
 	},
 	"@react-native-community/bob": {
 		"source": "src",
